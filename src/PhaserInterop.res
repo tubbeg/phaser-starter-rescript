@@ -1,7 +1,5 @@
 
 
-let x = 5
-
 type scene = {}
 type game = {}
 type gameobject = {}
@@ -21,8 +19,6 @@ type gameConf =     {
         }
     }
 
-
-// Import nodejs' path.dirname
 @module("./phaserWrapper")
 external makeScene: (sceneFn,sceneFn,sceneUpd, sceneConf) => scene = "createScene"
 @module("./phaserWrapper")

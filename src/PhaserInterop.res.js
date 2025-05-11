@@ -18,10 +18,7 @@ function addParticles(prim) {
   return PhaserWrapper.createParticles(prim);
 }
 
-var x = 5;
-
 export {
-  x ,
   makeScene ,
   makeGame ,
   addLogo ,
