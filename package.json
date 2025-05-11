@@ -4,8 +4,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "res:build":"rescript",
-    "res:watch":"rescript -w"
+    "res:build": "rescript",
+    "res:watch": "rescript -w"
   },
   "keywords": [],
   "author": "",
@@ -15,5 +15,8 @@
     "@rescript/core": "^1.6.1",
     "phaser": "^3.88.2",
     "rescript": "^11.1.4"
+  },
+  "devDependencies": {
+    "vite": "^6.3.5"
   }
 }

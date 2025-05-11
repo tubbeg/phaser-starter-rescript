@@ -13,7 +13,8 @@ A problem with F# Fable is that F# is designed for the .NET CLR. So you
 have to cover all kinds of language constructs. Sometimes that doesn't
 always work. The translation between F# and JS is not always 1-to-1.
 
-These kinds of problem won't appear in RS.
+These kinds of problem won't appear in RS. For instance, the syntax is
+intentionally designed to be similar to JS.
 
 Typescript (TS) is great, but it does have many problems that Rescript
 fixes. But I'm also not saying that TS is worse than RS. Sometimes you
@@ -25,9 +26,9 @@ I will note that the RS compiler is really really fast.
 
 */
 
-let createConfig = (scene) =>
+let createConfig : (PhaserInterop.scene) => PhaserInterop.gameConf = (scene) =>
     {
-        "type" :5,
+        "type" :0,
         "width": 800,
         "height": 600,
         "scene": scene,
@@ -39,17 +40,53 @@ let createConfig = (scene) =>
         }
     } 
 
+let add = %raw("(a, b) => a + b")
+
+//this is really interesting
+//i'm essentially telling the compiler:
+//trust me I know what I'm doing. This is
+//an integer. But I could easily change this
+//to a string. A little bit different from
+//Emit in F# Fable
+let myNum : int = add (5,5) 
+
 let addNumbers = (a,b) => a + b
 
-let preloadFn = (s) => ()
-let createFn = (s) => ()
+let add = %raw("(a, b) => a + b")
+
+//this is honestly slightly easier than Fable
+let setBaseUrl : (PhaserInterop.scene, string) => unit
+    = %raw("(s,url) => s.load.setBaseURL(url)")
+let loadImage : (PhaserInterop.scene, string, string) => unit
+    = %raw("(s,id,path) => s.load.image(id,path)")
+
+let addImage
+    = %raw("(s,x,y,id) => s.add.image(x, y, id)")
+
+let addImagePhysics
+    = %raw("(s,x,y,id) => s.add.image(x, y, id)")
+
+//this does look very similar to js
+let preloadFn = (s : PhaserInterop.scene) => {
+    setBaseUrl (s,"https://labs.phaser.io")
+    loadImage (s, "sky", "assets/skies/space3.png")
+    loadImage (s, "logo", "assets/sprites/phaser3-logo.png")
+    loadImage (s, "red", "assets/particles/red.png")
+}
+
+
+let createFn = (s) => {
+    addImage (s,400,300,"sky")->ignore
+}
 let updateFn = (s,t,dt) => () 
 let sceneConf : PhaserInterop.sceneConf = {}
 
 let s = PhaserInterop.makeScene (preloadFn, createFn, updateFn, sceneConf)
 let conf = createConfig (s)
 
+Console.log(conf)
 
+let g = PhaserInterop.makeGame (conf)
 /*
 
 let create-co

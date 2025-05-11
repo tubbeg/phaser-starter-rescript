@@ -1,4 +1,4 @@
-import {Scene} from "phaser"
+import {Scene,Game} from "phaser"
 
 
 //rescript does not have support for OOP
@@ -26,6 +26,21 @@ class XtScene extends Scene{
 
 }
 
+export function createParticles (scene){
+    const particles = scene.add.particles(0, 0, 'red',
+        {
+        speed: 100,
+        scale: { start: 1, end: 0 },
+        blendMode: 'ADD'
+    });
+    return particles;
+}
+
 export function createScene (p,c,u,conf){
     return new XtScene(p,c,u,conf);
+}
+
+export function createGame(conf){
+    //conf.scene = new Example();
+    return new Game(conf);
 }
