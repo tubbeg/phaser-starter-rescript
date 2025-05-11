@@ -36,11 +36,18 @@ export function createParticles (scene){
     return particles;
 }
 
+export function addLogo (scene){
+    const logo = scene.physics.add.image(400, 100, 'logo');
+    logo.setVelocity(100, 200);
+    logo.setBounce(1, 1);
+    logo.setCollideWorldBounds(true);
+    return logo;
+}
+
 export function createScene (p,c,u,conf){
     return new XtScene(p,c,u,conf);
 }
 
 export function createGame(conf){
-    //conf.scene = new Example();
     return new Game(conf);
 }

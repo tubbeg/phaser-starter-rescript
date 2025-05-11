@@ -35,7 +35,7 @@ var loadImage = ((s,id,path) => s.load.image(id,path));
 
 var addImage = ((s,x,y,id) => s.add.image(x, y, id));
 
-var addImagePhysics = ((s,x,y,id) => s.add.image(x, y, id));
+var startFollow = ((go1,go2) => go1.startFollow(go2));
 
 function preloadFn(s) {
   setBaseUrl(s, "https://labs.phaser.io");
@@ -46,6 +46,9 @@ function preloadFn(s) {
 
 function createFn(s) {
   addImage(s, 400, 300, "sky");
+  var p = PhaserInterop.addParticles(s);
+  var l = PhaserInterop.addLogo(s);
+  startFollow(p, l);
 }
 
 function updateFn(s, t, dt) {
@@ -70,7 +73,7 @@ export {
   setBaseUrl ,
   loadImage ,
   addImage ,
-  addImagePhysics ,
+  startFollow ,
   preloadFn ,
   createFn ,
   updateFn ,

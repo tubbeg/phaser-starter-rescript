@@ -4,6 +4,7 @@ let x = 5
 
 type scene = {}
 type game = {}
+type gameobject = {}
 type sceneFn = scene => unit
 type sceneUpd = (scene,float,float) => unit
 type sceneConf = {}
@@ -18,7 +19,7 @@ type gameConf =     {
                 "gravity": { "y": int }
             }
         }
-    } 
+    }
 
 
 // Import nodejs' path.dirname
@@ -26,4 +27,8 @@ type gameConf =     {
 external makeScene: (sceneFn,sceneFn,sceneUpd, sceneConf) => scene = "createScene"
 @module("./phaserWrapper")
 external makeGame: (gameConf) => game = "createGame"
+@module("./phaserWrapper")
+external addLogo: (scene) => gameobject = "addLogo"
+@module("./phaserWrapper")
+external addParticles: (scene) => gameobject = "createParticles"
 

@@ -10,11 +10,21 @@ function makeGame(prim) {
   return PhaserWrapper.createGame(prim);
 }
 
+function addLogo(prim) {
+  return PhaserWrapper.addLogo(prim);
+}
+
+function addParticles(prim) {
+  return PhaserWrapper.createParticles(prim);
+}
+
 var x = 5;
 
 export {
   x ,
   makeScene ,
   makeGame ,
+  addLogo ,
+  addParticles ,
 }
 /* ./phaserWrapper Not a pure module */
